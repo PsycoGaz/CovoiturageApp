@@ -55,6 +55,9 @@ function NavScrollExample() {
               <Nav.Link as={Link} to="/trajets" className="nav-link text-white d-flex align-items-center">
                 <FaCar className="me-2" /> Trajets
               </Nav.Link>
+              <Nav.Link as={Link} to="/create-trajets" className="nav-link text-white d-flex align-items-center">
+                <FaCar className="me-2" />Add Trajets
+              </Nav.Link>
               {user && user.role === 'admin' && (
                 <Nav.Link as={Link} to="/dashboard" className="nav-link text-white d-flex align-items-center">
                   <FaCar className="me-2" /> Dashboard

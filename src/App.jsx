@@ -45,7 +45,7 @@ function App() {
           <Route path="/edit/:id" element={<ProtectedRoute><UpdateCar /></ProtectedRoute>} />
           <Route path="/success" element={<ProtectedRoute><SuccessPage /></ProtectedRoute>} />
           <Route path="/search" element={<SearchResults />} />
-          <Route path="/cars/create-trajet" element={<Createtrajet />} />
+          <Route path="/create-trajets" element={<Createtrajet />} />
           
                     <Route path="/trajets" element={<TrajetList />} />
         </Routes>

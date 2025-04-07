@@ -53,7 +53,7 @@ function Createtrajet() {
       .post('http://localhost:3000/trajets', newTrajet)
       .then((response) => {
         console.log('Trajet created successfully:', response.data);
-        navigate('/cars/trajets');
+        
       })
       .catch((error) => {
         console.error('Error creating trajet:', error);
@@ -214,7 +214,7 @@ function Createtrajet() {
           Ajouter Voiture
         </Button>
 
-        <Button variant="primary" type="submit" className="mt-3">
+        <Button variant="primary" onClick={handleSubmit} type="submit" className="mt-3">
           Créer Trajet
         </Button>
       </Form>

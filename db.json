@@ -278,6 +278,20 @@
       "gender": "male",
       "numTravelers": "3",
       "placesReservees": 0
+    },
+    {
+      "id": "832c",
+      "depart": "jendouba",
+      "arrivee": "kef",
+      "date": "2025-04-12T23:57",
+      "prix": "55",
+      "conducteurId": 1,
+      "voitureId": "1",
+      "baggage": "none",
+      "noSmoking": true,
+      "noAnimals": true,
+      "gender": "both",
+      "numTravelers": 1
     }
   ]
 }
