@@ -50,6 +50,7 @@ body {
 }
 
 .hero-image img {
+  padding-left: 600px;
   max-width: 100%;
   height: auto;
 }

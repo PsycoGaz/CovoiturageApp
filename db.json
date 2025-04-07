@@ -1,134 +1,283 @@
 {
-    "admins": [
-      {
-        "id": 1,
-        "username": "admin",
-        "password": "admin123"
-      }
-    ],
-    "passagers": [
-      {
-        "id": 1,
-        "CIN": "11111111",
-        "Nom": "Ben Ali",
-        "Prenom": "Youssef"
-      }
-    ],
-    "conducteurs": [
-      { "id": 1, "CIN": "C10001", "Nom": "Trabelsi", "Prenom": "Ali" },
-      { "id": 2, "CIN": "C10002", "Nom": "Zouari", "Prenom": "Hedi" },
-      { "id": 3, "CIN": "C10003", "Nom": "Kacem", "Prenom": "Amin" },
-      { "id": 4, "CIN": "C10004", "Nom": "Jaziri", "Prenom": "Fares" },
-      { "id": 5, "CIN": "C10005", "Nom": "Mansour", "Prenom": "Sami" },
-      { "id": 6, "CIN": "C10006", "Nom": "Cherif", "Prenom": "Yassine" },
-      { "id": 7, "CIN": "C10007", "Nom": "Hentati", "Prenom": "Akram" },
-      { "id": 8, "CIN": "C10008", "Nom": "Khalfallah", "Prenom": "Walid" },
-      { "id": 9, "CIN": "C10009", "Nom": "Gharbi", "Prenom": "Ahmed" },
-      { "id": 10, "CIN": "C10010", "Nom": "Saidi", "Prenom": "Rami" }
-    ],
-    "voitures": [
-      { "id": 1, "marque": "Toyota", "modele": "Yaris", "immatriculation": "1000-TU-1", "conducteurId": 1 },
-      { "id": 2, "marque": "Peugeot", "modele": "208", "immatriculation": "1001-TU-2", "conducteurId": 2 },
-      { "id": 3, "marque": "Renault", "modele": "Clio", "immatriculation": "1002-TU-3", "conducteurId": 3 },
-      { "id": 4, "marque": "Volkswagen", "modele": "Golf", "immatriculation": "1003-TU-4", "conducteurId": 4 },
-      { "id": 5, "marque": "Hyundai", "modele": "i20", "immatriculation": "1004-TU-5", "conducteurId": 5 },
-      { "id": 6, "marque": "Ford", "modele": "Focus", "immatriculation": "1005-TU-6", "conducteurId": 6 },
-      { "id": 7, "marque": "Citroën", "modele": "C3", "immatriculation": "1006-TU-7", "conducteurId": 7 },
-      { "id": 8, "marque": "Kia", "modele": "Rio", "immatriculation": "1007-TU-8", "conducteurId": 8 },
-      { "id": 9, "marque": "Seat", "modele": "Ibiza", "immatriculation": "1008-TU-9", "conducteurId": 9 },
-      { "id": 10, "marque": "Dacia", "modele": "Sandero", "immatriculation": "1009-TU-10", "conducteurId": 10 }
-    ],
-    "trajets": [
-      {
-        "id": 1,
-        "depart": "Tunis",
-        "arrivee": "Sousse",
-        "date": "2025-04-06T08:00:00",
-        "prix": 15.0,
-        "conducteurId": 1,
-        "voitureId": 1
-      },
-      {
-        "id": 2,
-        "depart": "Sfax",
-        "arrivee": "Tunis",
-        "date": "2025-04-07T10:30:00",
-        "prix": 25.0,
-        "conducteurId": 2,
-        "voitureId": 2
-      },
-      {
-        "id": 3,
-        "depart": "Gabes",
-        "arrivee": "Sousse",
-        "date": "2025-04-08T12:00:00",
-        "prix": 20.0,
-        "conducteurId": 3,
-        "voitureId": 3
-      },
-      {
-        "id": 4,
-        "depart": "Tunis",
-        "arrivee": "Bizerte",
-        "date": "2025-04-09T09:00:00",
-        "prix": 10.0,
-        "conducteurId": 4,
-        "voitureId": 4
-      },
-      {
-        "id": 5,
-        "depart": "Monastir",
-        "arrivee": "Sfax",
-        "date": "2025-04-10T11:00:00",
-        "prix": 18.0,
-        "conducteurId": 5,
-        "voitureId": 5
-      },
-      {
-        "id": 6,
-        "depart": "Sousse",
-        "arrivee": "Tunis",
-        "date": "2025-04-11T07:30:00",
-        "prix": 15.0,
-        "conducteurId": 6,
-        "voitureId": 6
-      },
-      {
-        "id": 7,
-        "depart": "Tunis",
-        "arrivee": "Kairouan",
-        "date": "2025-04-12T06:00:00",
-        "prix": 22.0,
-        "conducteurId": 7,
-        "voitureId": 7
-      },
-      {
-        "id": 8,
-        "depart": "Djerba",
-        "arrivee": "Tunis",
-        "date": "2025-04-13T05:00:00",
-        "prix": 35.0,
-        "conducteurId": 8,
-        "voitureId": 8
-      },
-      {
-        "id": 9,
-        "depart": "Sfax",
-        "arrivee": "Mahdia",
-        "date": "2025-04-14T13:00:00",
-        "prix": 12.0,
-        "conducteurId": 9,
-        "voitureId": 9
-      },
-      {
-        "id": 10,
-        "depart": "Bizerte",
-        "arrivee": "Tunis",
-        "date": "2025-04-15T14:00:00",
-        "prix": 8.0,
-        "conducteurId": 10,
-        "voitureId": 10
-      }
-    ]
-  }
-  
+  "admins": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123"
+    }
+  ],
+  "passagers": [
+    {
+      "id": "1",
+      "CIN": "11111111",
+      "Nom": "Ben Ali",
+      "Prenom": "Youssef"
+    }
+  ],
+  "conducteurs": [
+    {
+      "id": "1",
+      "CIN": "C10001",
+      "Nom": "Trabelsi",
+      "Prenom": "Ali"
+    },
+    {
+      "id": "2",
+      "CIN": "C10002",
+      "Nom": "Zouari",
+      "Prenom": "Hedi"
+    },
+    {
+      "id": "3",
+      "CIN": "C10003",
+      "Nom": "Kacem",
+      "Prenom": "Amin"
+    },
+    {
+      "id": "4",
+      "CIN": "C10004",
+      "Nom": "Jaziri",
+      "Prenom": "Fares"
+    },
+    {
+      "id": "5",
+      "CIN": "C10005",
+      "Nom": "Mansour",
+      "Prenom": "Sami"
+    },
+    {
+      "id": "6",
+      "CIN": "C10006",
+      "Nom": "Cherif",
+      "Prenom": "Yassine"
+    },
+    {
+      "id": "7",
+      "CIN": "C10007",
+      "Nom": "Hentati",
+      "Prenom": "Akram"
+    },
+    {
+      "id": "8",
+      "CIN": "C10008",
+      "Nom": "Khalfallah",
+      "Prenom": "Walid"
+    },
+    {
+      "id": "9",
+      "CIN": "C10009",
+      "Nom": "Gharbi",
+      "Prenom": "Ahmed"
+    },
+    {
+      "id": "10",
+      "CIN": "C10010",
+      "Nom": "Saidi",
+      "Prenom": "Rami"
+    }
+  ],
+  "voitures": [
+    {
+      "id": "1",
+      "marque": "Toyota",
+      "modele": "Yaris",
+      "immatriculation": "1000-TU-1",
+      "conducteurId": 1,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "2",
+      "marque": "Peugeot",
+      "modele": "208",
+      "immatriculation": "1001-TU-2",
+      "conducteurId": 2,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "3",
+      "marque": "Renault",
+      "modele": "Clio",
+      "immatriculation": "1002-TU-3",
+      "conducteurId": 3,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "4",
+      "marque": "Volkswagen",
+      "modele": "Golf",
+      "immatriculation": "1003-TU-4",
+      "conducteurId": 4,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "5",
+      "marque": "Hyundai",
+      "modele": "i20",
+      "immatriculation": "1004-TU-5",
+      "conducteurId": 5,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "6",
+      "marque": "Ford",
+      "modele": "Focus",
+      "immatriculation": "1005-TU-6",
+      "conducteurId": 6,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "7",
+      "marque": "Citroën",
+      "modele": "C3",
+      "immatriculation": "1006-TU-7",
+      "conducteurId": 7,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "8",
+      "marque": "Kia",
+      "modele": "Rio",
+      "immatriculation": "1007-TU-8",
+      "conducteurId": 8,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "9",
+      "marque": "Seat",
+      "modele": "Ibiza",
+      "immatriculation": "1008-TU-9",
+      "conducteurId": 9,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    },
+    {
+      "id": "10",
+      "marque": "Dacia",
+      "modele": "Sandero",
+      "immatriculation": "1009-TU-10",
+      "conducteurId": 10,
+      "img": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600"
+    }
+  ],
+  "trajets": [
+    {
+      "id": "390d",
+      "depart": "Sfax",
+      "arrivee": "Hammamet",
+      "date": "2025-04-17T13:41",
+      "prix": "4",
+      "conducteurId": 1,
+      "voitureId": "8",
+      "baggage": "none",
+      "noSmoking": true,
+      "noAnimals": true,
+      "gender": "female",
+      "numTravelers": 2,
+      "placesReservees": 0
+    },
+    {
+      "id": "390e",
+      "depart": "Tunis",
+      "arrivee": "Monastir",
+      "date": "2025-05-01T09:30",
+      "prix": "8",
+      "conducteurId": 2,
+      "voitureId": "5",
+      "baggage": "small",
+      "noSmoking": false,
+      "noAnimals": true,
+      "gender": "male",
+      "numTravelers": 3,
+      "placesReservees": 1
+    },
+    {
+      "id": "390f",
+      "depart": "Kairouan",
+      "arrivee": "Mahdia",
+      "date": "2025-05-10T15:00",
+      "prix": "6",
+      "conducteurId": 3,
+      "voitureId": "10",
+      "baggage": "big",
+      "noSmoking": true,
+      "noAnimals": false,
+      "gender": "both",
+      "numTravelers": 4,
+      "placesReservees": 0
+    },
+    {
+      "id": "3910",
+      "depart": "Bizerte",
+      "arrivee": "Tataouine",
+      "date": "2025-04-25T08:00",
+      "prix": "10",
+      "conducteurId": 4,
+      "voitureId": "3",
+      "baggage": "none",
+      "noSmoking": false,
+      "noAnimals": false,
+      "gender": "female",
+      "numTravelers": 1,
+      "placesReservees": 0
+    },
+    {
+      "id": "3911",
+      "depart": "Tozeur",
+      "arrivee": "Douz",
+      "date": "2025-04-20T11:00",
+      "prix": "12",
+      "conducteurId": 5,
+      "voitureId": "7",
+      "baggage": "bigWithFee",
+      "noSmoking": true,
+      "noAnimals": false,
+      "gender": "both",
+      "numTravelers": 2,
+      "placesReservees": 0
+    },
+    {
+      "id": "3912",
+      "depart": "Sousse",
+      "arrivee": "Nabeul",
+      "date": "2025-05-05T14:00",
+      "prix": "5",
+      "conducteurId": 6,
+      "voitureId": "2",
+      "baggage": "small",
+      "noSmoking": true,
+      "noAnimals": true,
+      "gender": "male",
+      "numTravelers": 3,
+      "placesReservees": 0
+    },
+    {
+      "id": "f8ae",
+      "depart": "sfax",
+      "arrivee": "lyon",
+      "date": "2025-04-08T00:07",
+      "prix": "12",
+      "conducteurId": 1,
+      "voitureId": "9",
+      "baggage": "none",
+      "noSmoking": true,
+      "noAnimals": false,
+      "gender": "both",
+      "numTravelers": 1,
+      "placesReservees": 0
+    },
+    {
+      "id": "d92e",
+      "depart": "new",
+      "arrivee": "new",
+      "date": "2025-05-09T00:15",
+      "prix": "20",
+      "conducteurId": 1,
+      "voitureId": "9",
+      "baggage": "bigWithFee",
+      "noSmoking": false,
+      "noAnimals": true,
+      "gender": "male",
+      "numTravelers": "3",
+      "placesReservees": 0
+    }
+  ]
+}

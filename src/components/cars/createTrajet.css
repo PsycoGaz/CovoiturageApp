@@ -1,0 +1,103 @@
+/* Create Trajet Form Styling */
+.create-trajet-container {
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 2em auto;
+  }
+  
+  /* Heading */
+  .create-trajet-container h2 {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Form Label Styling */
+  .create-trajet-container .form-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5em;
+  }
+  
+  /* Form Control Styling */
+  .create-trajet-container .form-control {
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 1.2em;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #dcdcdc;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect for form controls */
+  .create-trajet-container .form-control:hover {
+    border-color: #f0a500;
+  }
+  
+  /* Focus effect for form controls */
+  .create-trajet-container .form-control:focus {
+    border-color: #f0a500;
+    box-shadow: 0 0 5px rgba(240, 165, 0, 0.5);
+  }
+  
+  /* Button Styling */
+  .create-trajet-container .btn-primary {
+    background-color: #f0a500;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.8em 2em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1em;
+    width: 100%;
+  }
+  
+  /* Hover effect for button */
+  .create-trajet-container .btn-primary:hover {
+    background-color: #e07b00;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Checkbox and Select Styling */
+  .create-trajet-container .form-check-label {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .create-trajet-container select {
+    border-radius: 8px;
+    padding: 1em;
+    margin-bottom: 1.2em;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #dcdcdc;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .create-trajet-container {
+      padding: 1.5em;
+    }
+  
+    /* Adjust header font size */
+    .create-trajet-container h2 {
+      font-size: 1.5rem;
+    }
+  
+    .create-trajet-container .btn-primary {
+      padding: 0.8em 1.5em;
+    }
+  }
+  

@@ -20,6 +20,8 @@ import SearchResults from './components/cars/SearchResults';
 import SuccessPage from './components/cars/SuccessPage';
 import Table_Maintenance from './components/Dashboard/Table_Maintenance';
 import AddMaintenance from './components/Dashboard/AddMaintenance';
+import Createtrajet from './components/cars/create-trajet';
+import TrajetList from './components/cars/trajets';
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/cars" element={<ProtectedRoute><ListCars /></ProtectedRoute>} />
-          <Route path="/reserve/:id" element={<ProtectedRoute><CarRentalPage /></ProtectedRoute>} />
+          <Route path="/reserve/:id" element={<CarRentalPage />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/dashboard/add-car" element={<ProtectedRoute><AddCar /></ProtectedRoute>} />
           <Route path="/dashboard/list-cars" element={<ProtectedRoute><Table_Car /></ProtectedRoute>} />
@@ -43,6 +45,9 @@ function App() {
           <Route path="/edit/:id" element={<ProtectedRoute><UpdateCar /></ProtectedRoute>} />
           <Route path="/success" element={<ProtectedRoute><SuccessPage /></ProtectedRoute>} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/cars/create-trajet" element={<Createtrajet />} />
+          
+                    <Route path="/trajets" element={<TrajetList />} />
         </Routes>
         <ConditionalFooter />
       </Router>

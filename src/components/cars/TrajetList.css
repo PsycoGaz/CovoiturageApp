@@ -1,0 +1,115 @@
+/* Styles for the filter button and the filter section */
+.filter-btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed; /* Keep it fixed to the right */
+    top: 80px; /* Adjust this value to move the button lower */
+    right: 20px;
+    z-index: 100;
+  }
+  
+  .filter-btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  .filters {
+    position: fixed; /* Keep the filter section fixed to the right */
+    top: 120px; /* Adjust this value to match the button's new position */
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Add gap between each filter */
+    font-family: Arial, sans-serif; /* Clean font */
+  }
+  
+  .filters h4 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .filters label {
+    font-size: 16px;
+    color: #555;
+    display: block;
+  }
+  
+  .filters input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .filters select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .card-container {
+    margin-right: 300px; /* Make room for the filter button */
+  }
+  
+  /* Style for the individual filter options */
+  .filter-option {
+    margin-bottom: 12px; /* Add space between each filter */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .filter-option label {
+    font-size: 16px;
+    color: #444;
+  }
+  
+  .filter-option select {
+    margin-left: 10px;
+  }
+  
+  .filter-option input {
+    margin-right: 10px;
+  }
+  
+  /* Ensure the 'Réserver' button remains styled properly */
+.btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure button stays inline */
+    margin-top: 15px;
+    text-align: center; /* Center the text inside the button */
+  }
+  
+  .btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  /* Ensure card layout is unaffected by the filters */
+  .card-container {
+    margin-right: 300px; /* Space for the filter button */
+  }
+  
+  .card-body {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow for cards */
+  }
+  

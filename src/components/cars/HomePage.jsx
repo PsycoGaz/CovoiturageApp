@@ -9,22 +9,24 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Welcome to Rent Car</h1>
-          <p>Rent the car of your dreams at competitive prices.</p>
+          <h1>Welcome to 
+            My Way</h1>
+          <p>The best carpooling plateform.</p>
           <Link to="/cars">
-            <button className="cta-button">View Cars</button>
+            <button className="cta-button">View Offers</button>
           </Link>
         </div>
         <div className="hero-image">
-          <img src="src/img/2.png" alt="Hero" />
+          <img src="https://images.pexels.com/photos/6169870/pexels-photo-6169870.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hero" />
         </div>
       </section>
 
       {/* Featured Vehicles */}
       <section className="featured-vehicles">
-        <h2>Featured Vehicles</h2>
+        <h2>Avalible Lifts</h2>
         {/* Désactivation de la pagination via `showPagination` */}
         <ListCars limit={3} showPagination={false} />
+       {/*  //////////////List Cars  */}
       </section>
 
       {/* Why Choose Us */}

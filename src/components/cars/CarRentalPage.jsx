@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "./CarRentalPage.css";
 import { AuthContext } from "../auth/AuthContext";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, useStripe } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import axios from "axios";
 
 // Charger Stripe avec la clé publique
 const stripePromise = loadStripe("pk_test_51QiYqyAMVwYVRU1rk3QD5PIPZEuLgDY2842i3Fj6uiXRgv4yeOANQY5FJgPzi1GwGIs3W8xdkilebr7vvMbGSWfC00i1K7raoh");
@@ -14,204 +13,165 @@ const CarRentalPage = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [car, setCar] = useState(null);
-  const [rentalDate, setRentalDate] = useState(null);
-  const [returnDate, setReturnDate] = useState(null);
-  const [availabilities, setAvailabilities] = useState([]);
+
   const [totalCost, setTotalCost] = useState(0);
-  const stripe = useStripe();
+  const [traj, setTrajet] = useState(null);
+  const [CondId, setCondId] = useState(null); // État pour stocker l'ID du conducteur
+  const [conducteur, setConducteur] = useState(null);
+  const [car, setCar] = useState(null);
+  const [carId, setCarId] = useState(null); // État pour stocker l'ID de la voiture
+  const [placesToReserve, setPlacesToReserve] = useState(1); // État pour le nombre de places à réserver
 
+  // Récupérer les détails du trajet
   useEffect(() => {
-    // Fetch car details
-    const fetchCarData = async () => {
+    const fetchTraDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/api/cars/${id}`);
-        const data = await response.json();
-        setCar(data);
+        const response = await axios.get(`http://localhost:3000/trajets/${id}`);
+        setTrajet(response.data);
+        setCondId(response.data.conducteurId); // Mettre à jour CondId
+        setCarId(response.data.voitureId); // Mettre à jour l'ID de la voiture
+        console.log("Trajet details:", response.data);
       } catch (error) {
-        console.error("Error fetching car data:", error);
+        console.error("Erreur lors de la récupération des détails du trajet :", error);
       }
     };
 
-    // Fetch availabilities
-    const fetchAvailabilities = async () => {
-      try {
-        const response = await fetch(`http://localhost:8000/api/car-availabilities?car_id=${id}`);
-        const data = await response.json();
-        setAvailabilities(data.data);
-      } catch (error) {
-        console.error("Error fetching car availabilities:", error);
-      }
-    };
-
-    fetchCarData();
-    fetchAvailabilities();
+    fetchTraDetails();
   }, [id]);
 
-  const getRentedDates = () => {
-    const rentedDates = [];
-    availabilities.forEach((availability) => {
-      if (availability.car_id === parseInt(id)) {
-        const start = new Date(availability.start_date);
-        const end = new Date(availability.end_date);
-        let currentDate = start;
-
-        while (currentDate <= end) {
-          rentedDates.push(new Date(currentDate));
-          currentDate.setDate(currentDate.getDate() + 1);
-        }
-      }
-    });
-    return rentedDates;
-  };
-
-  const rentedDates = getRentedDates();
-
-  const calculateTotalCost = (rentalDate, returnDate) => {
-    if (rentalDate && returnDate && car) {
-      const timeDiff = Math.abs(returnDate - rentalDate);
-      const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
-      return daysDiff * car.price;
-    }
-    return 0;
-  };
-
+  // Récupérer les détails du conducteur
   useEffect(() => {
-    setTotalCost(calculateTotalCost(rentalDate, returnDate));
-  }, [rentalDate, returnDate, car]);
+    if (CondId) {
+      const fetchConducteurDetails = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/conducteurs/${CondId}`);
+          setConducteur(response.data);
+          console.log("Conducteur details:", response.data);
+        } catch (error) {
+          console.error("Erreur lors de la récupération des détails du conducteur :", error);
+        }
+      };
 
+      fetchConducteurDetails();
+    }
+  }, [CondId]);
+
+  // Récupérer les détails de la voiture
+  useEffect(() => {
+    if (carId) {
+      const fetchCarDetails = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/voitures/${carId}`);
+          setCar(response.data);
+          console.log("Car details:", response.data);
+        } catch (error) {
+          console.error("Erreur lors de la récupération des détails de la voiture :", error);
+        }
+      };
+
+      fetchCarDetails();
+    }
+  }, [carId]);
+
+  // Calculer le coût total en fonction du nombre de places sélectionnées
+  useEffect(() => {
+    if (traj) {
+      setTotalCost(traj.prix * placesToReserve);
+    }
+  }, [traj, placesToReserve]);
+
+  // Gérer la réservation
   const handleConfirmRent = async () => {
-    if (!user) {
-      navigate("/login");
+    if (placesToReserve > (traj.numTravelers - traj.placesReservees)) {
+      alert("Nombre de places insuffisant !");
       return;
     }
-
-    const rentData = {
-      rental_date: rentalDate.toISOString().split("T")[0],
-      return_date: returnDate.toISOString().split("T")[0],
-      user_id: user.id,
-      car_id: id,
-    };
-
+  
     try {
-      const items = [
-        {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: `${car.model} ${car.brand}`,
-              images: car.photo1 ? [car.photo1] : [],
-            },
-            unit_amount: Math.round(totalCost * 100),
-          },
-          quantity: 1,
-        },
-      ];
-
-      // Create a payment session
-      const response = await fetch("http://localhost:8000/api/processpayment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          line_items: items,
-          success_url: `${window.location.origin}/success?rentData=${encodeURIComponent(
-            JSON.stringify(rentData)
-          )}`,
-          cancel_url: `${window.location.origin}/car-rental/${id}`,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Payment processing failed");
-      }
-
-      const data = await response.json();
-
-      if (data.id) {
-        const result = await stripe.redirectToCheckout({
-          sessionId: data.id,
-        });
-
-        if (result.error) {
-          throw new Error(result.error.message);
-        }
-      } else {
-        throw new Error("Failed to retrieve session ID");
-      }
+      // Mettre à jour le nombre de places réservées dans la base de données
+      const updatedTrajet = {
+        ...traj,
+        placesReservees: traj.placesReservees + placesToReserve, // Incrémenter les places réservées
+      };
+  
+      await axios.put(`http://localhost:3000/trajets/${traj.id}`, updatedTrajet);
+  
+      // Mettre à jour localement l'état pour refléter les changements
+      setTrajet(updatedTrajet);
+  
+      alert(`Réservation confirmée pour ${placesToReserve} places.`);
+      console.log(`Réservation confirmée pour ${placesToReserve} places.`);
     } catch (error) {
-      console.error("Payment error:", error);
-      alert(`Payment failed: ${error.message}`);
+      console.error("Erreur lors de la mise à jour des places réservées :", error);
+      alert("Une erreur est survenue lors de la réservation. Veuillez réessayer.");
     }
-  };
-
-  if (!car) {
+  }
+  // Afficher un message de chargement tant que les données ne sont pas disponibles
+  if (!traj || !car) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="rental-container">
       <div className="car-image">
-        <img src={car.photo1} alt={car.model} />
+        {car.img ? (
+          <img src={car.img} alt={traj.model} />
+        ) : (
+          <p>Image not available</p>
+        )}
       </div>
       <div className="rental-info">
         <h2>
-          {car.model} {car.brand}
+          {traj.depart} - {traj.arrivee}
         </h2>
         <div className="date-inputs">
           <label>
-            Rental date
-            <DatePicker
-              selected={rentalDate}
-              onChange={(date) => setRentalDate(date)}
-              excludeDates={rentedDates}
-              dateFormat="yyyy-MM-dd"
-              dayClassName={(date) =>
-                rentedDates.some(
-                  (rentedDate) =>
-                    rentedDate.getDate() === date.getDate() &&
-                    rentedDate.getMonth() === date.getMonth() &&
-                    rentedDate.getFullYear() === date.getFullYear()
-                )
-                  ? "react-datepicker__day--rented"
-                  : undefined
-              }
-            />
-          </label>
-          <label>
-            Return date
-            <DatePicker
-              selected={returnDate}
-              onChange={(date) => setReturnDate(date)}
-              excludeDates={rentedDates}
-              dateFormat="yyyy-MM-dd"
-              dayClassName={(date) =>
-                rentedDates.some(
-                  (rentedDate) =>
-                    rentedDate.getDate() === date.getDate() &&
-                    rentedDate.getMonth() === date.getMonth() &&
-                    rentedDate.getFullYear() === date.getFullYear()
-                )
-                  ? "react-datepicker__day--rented"
-                  : undefined
-              }
-            />
+            Rental date: {traj.date}
           </label>
         </div>
-        <div className="details">
+        <div className="cond-details">
           <p>
-            <strong>Gearbox:</strong> {car.gearbox}
+            <strong>Nb places:</strong> {traj.numTravelers}
           </p>
           <p>
-            <strong>Type:</strong> {car.fuel_type}
+            <strong>Places restantes:</strong> {traj.numTravelers - traj.placesReservees}
           </p>
+        </div>
+        {conducteur && (
+          <div className="conducteur-info">
+            <p>
+              <strong>Conducteur:</strong> {conducteur.Nom} {conducteur.Prenom}
+            </p>
+            
+          </div>
+        )}
+        {car && (
+          <div className="conducteur-info">
+            <p>
+              <strong>Marque:</strong> {car.marque} 
+            </p>
+            <p>
+              <strong>Modele:</strong> {car.modele}
+            </p>
+          </div>
+        )}
+        
+        
+        <div className="reservation-input">
+          <label>
+            Nombre de places à réserver:
+            <input
+              type="number"
+              min="1"
+              max={traj.numTravelers - traj.placesReservees}
+              value={placesToReserve}
+              onChange={(e) => setPlacesToReserve(Number(e.target.value))}
+            />
+          </label>
         </div>
         <div className="total">
           <p>Total</p>
-          <h3>${totalCost.toFixed(2)} USD</h3>
+          <h3>${placesToReserve*traj.prix} USD</h3>
         </div>
         <button className="confirm-btn" onClick={handleConfirmRent}>
           Confirm Rent

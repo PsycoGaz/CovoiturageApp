@@ -5,15 +5,17 @@
   gap: 1.5rem;
   padding: 2rem;
   background: #f8f9fa;
+  
 }
 
 .card {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 150px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   background: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-height: 400px;
 }
 
 .card:hover {
@@ -26,6 +28,8 @@
   height: 200px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border: rgb(179, 174, 174) solid 1px;
+  border-radius: 5px 5px 0 0;
 }
 
 .card:hover .card-image {
@@ -35,6 +39,7 @@
 .card-body {
   padding: 1rem;
   text-align: center;
+  
 }
 
 .card-title {
@@ -109,4 +114,25 @@
   .pagination {
     flex-wrap: wrap;
   }
+}
+.book-now-btn {
+  background-color: #007bff; /* Primary blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.book-now-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.book-now-btn:active {
+  background-color: #003f7f; /* Even darker blue when clicked */
+  transform: scale(0.95); /* Slight shrink effect */
 }
